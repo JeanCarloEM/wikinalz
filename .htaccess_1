@@ -1,0 +1,23 @@
+# WIKISCRITO
+
+RewriteEngine on
+
+# ARRUMANDO URL COM WWW E PARA O DOMÍNIO REAL
+RewriteCond %{HTTP_HOST} ^s-004\.guinalz\.com$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^wikiscrito\.org$ [NC]
+RewriteRule ^/?$ "http\:\/\/www\.wikiscrito\.org" [R=301,L]
+
+# SPLASH
+# DOCUMENT_ROOT CHANGE
+  
+  # QUANDO ACESSO PELA WEB
+  RewriteCond %{HTTP_HOST} ^wikiscrito.org$ [NC,OR]
+  RewriteCond %{HTTP_HOST} ^www.wikiscrito.org$ [NC]
+  RewriteCond %{REQUEST_URI} !splash/
+  RewriteRule (.*) /splash/$1 [L]
+
+  
+  # QUANDO ACESSADO EM LOCALHOST
+  RewriteCond %{HTTP_HOST} ^localhost$ [NC]
+  RewriteCond %{REQUEST_URI} !git/__DOM__/wikiscrito.org/splash/
+  RewriteRule (.*) /git/__DOM__/wikiscrito.org/splash/$1 [L]
